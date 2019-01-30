@@ -23,5 +23,5 @@ device_interfaces:
 
 
 
--interfaces: "{{ device_interfaces|resolve_inheritance }}"
+interfaces: "{{ device_interfaces|resolve_inheritance }}"
 
