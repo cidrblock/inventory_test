@@ -1,0 +1,7 @@
+- hosts: all
+  gather_facts: False
+  tasks:
+  - debug:
+      msg: "{{ interfaces }}"
+  - debug:
+      var: ospf

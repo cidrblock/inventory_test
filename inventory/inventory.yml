@@ -1,0 +1,8 @@
+all:
+  children:
+    site1:
+      children:
+        site1_edge_dg:
+          hosts:
+            searouter1:
+            searouter2:

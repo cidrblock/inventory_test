@@ -1,0 +1,4 @@
+global_interface_templates:
+  loopback:
+    ospf_enabled: False
+

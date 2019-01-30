@@ -1,0 +1,12 @@
+
+site_connection_templates:
+  lan_gateway:
+    inherit_from: "{{ global_connection_templates['lan_gateway'] }}"
+  server_access:
+    inherit_from: "{{ global_connection_templates['server_access'] }}"
+    vlan: "{{ (site_vlan_defs|selectattr('name', 'equalto', 'server_access')|list|first)['id'] }}"
+  person_access:
+    inherit_from: "{{ global_connection_templates['person_access'] }}"
+  intra_site_uplink:
+    inherit_from: "{{ global_connection_templates['intra_site_uplink'] }}"
+

@@ -1,0 +1,3 @@
+site_interface_templates:
+  loopback:
+    inherit_from: "{{ global_interface_templates['loopback'] }}"

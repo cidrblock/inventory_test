@@ -1,0 +1,4 @@
+device_ospf: 
+- inherit_from: "{{ site_ospf_templates['site_lan'] }}"
+
+ospf: "{{ device_ospf|resolve_inheritance }}"

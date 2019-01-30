@@ -1,0 +1,27 @@
+device_interfaces:
+- name: loopback0
+  inherit_from: "{{ site_interface_templates['loopback'] }}"
+  ip:
+    address: 10.1.1.2/32
+- name: Ethernet0
+  inherit_from: "{{ site_connection_templates['intra_site_uplink'] }}"
+  description: connection to searouter2
+  ip:
+      address: 10.1.2.2/30
+- name: Ethernet2
+  inherit_from: "{{ site_connection_templates['server_access'] }}"
+  description: connection to server
+  vlan: 100
+- name: Vlan100
+  inherit_from: "{{ site_connection_templates['lan_gateway'] }}"
+  description: dg v100
+  ip:
+    address: "{{ (site_vlan_defs|selectattr('id', 'equalto', 100)|list|first)['network']|ipaddr('network')|ipmath(3) }}/{{ (site_vlan_defs|selectattr('id', 'equalto', 100)|list|first)['network']|ipaddr('prefix') }}"
+  hsrp:
+   group: 100
+   address: "{{ (site_vlan_defs|selectattr('id', 'equalto', 100)|list|first)['network']|ipaddr('network')|ipmath(1) }}/{{ (site_vlan_defs|selectattr('id', 'equalto', 100)|list|first)['network']|ipaddr('prefix') }}"
+
+
+
+interfaces: "{{ device_interfaces|resolve_inheritance }}"
+

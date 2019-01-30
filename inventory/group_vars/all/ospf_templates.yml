@@ -1,0 +1,21 @@
+global_ospf_templates:
+  site_lan:
+    process_id: 100
+    auto-cost:
+      reference-bandwidth: 40000
+    log_adjacency_changes: True
+    vrf: rh_lan
+    router_id: "{{ (interfaces|selectattr('name', 'equalto', 'loopback0')|list|first)['ip']['address']|ipaddr('address') }}"
+    enabled_interfaces: "{{ interfaces|selectattr('ospf_enabled', 'equalto', True)|list|map(attribute='name')|list }}"
+    default-information:
+      originate: True
+      metric: 1000
+      metric-type: 1
+    redistribute:
+      static:
+        type: static
+        subnets: True
+    areas:
+      0:
+        networks: "{{ interfaces|selectattr('ospf_enabled', 'equalto', True)|map(attribute='ip')|map(attribute='address')|ipaddr('network') }}"
+        type: # nssa no-summary

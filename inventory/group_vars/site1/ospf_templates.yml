@@ -1,0 +1,20 @@
+
+site_ospf_templates:
+  site_lan:
+    inherit_from: "{{ global_ospf_templates['site_lan'] }}"
+    distribute-list: 
+      type: route-map 
+      name: dlist1 
+      direction: in
+    redistribute:
+      bgp_65003:
+        type: bgp 
+        AS: 65003 
+        metric: 10 
+        metric-type: 1 
+        subnets: true 
+        tag: 65003
+        route-map:  rmap1
+
+
+

@@ -1,0 +1,7 @@
+
+
+
+site_vlan_defs:
+- name: server_access
+  id: 100
+  network: 10.1.3.0/24

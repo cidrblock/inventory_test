@@ -1,0 +1,11 @@
+
+global_connection_templates:
+  lan_gateway:
+    ospf_enabled: False
+  server_access:
+    ospf_enabled: False
+  person_access:
+    ospf_enabled: False
+  intra_site_uplink:
+    ospf_enabled: True
+    
